@@ -4,7 +4,7 @@ import { NetworkErrorMessage } from "./NetworkErrorMessage";
 
 export function ConnectWallet({ connectWallet, networkError, dismiss }) {
   return (
-    <div className="container">
+    <div className="container" style={{"height": "70px"}}>
       <div className="row justify-content-md-center">
         <div className="col-12 text-center">
           {/* Metamask network should be set to Localhost:8545. */}

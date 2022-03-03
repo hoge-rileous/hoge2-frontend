@@ -36,9 +36,7 @@ export class Dapp extends React.Component {
 
   render() {
 
-    if (window.ethereum === undefined) {
-      return <NoWalletDetected />;
-    }
+
 
     const hogeBalance  = ethers.utils.formatUnits(this.state.hogeBalance, 9);
     const hoge2Balance = ethers.utils.formatUnits(this.state.hoge2Balance, 9);
@@ -59,12 +57,16 @@ export class Dapp extends React.Component {
           <div style={{textAlign: "center"}}>
             <h1 >HOGE 2.0 UN/WRAPPING STATION</h1>
 
+            {(window.ethereum === undefined) &&
+              <NoWalletDetected />
+            }
+
             {this.state.initialized || <ConnectWallet 
               connectWallet={() => this._connectWallet()} 
               networkError={this.state.networkError}
               dismiss={() => this._dismissNetworkError()}
             />}
-           {this.state.initialized && <div>
+           {this.state.initialized && <div style={{"height": "70px", "padding": "20px 0"}}>
               Using address: <b>{this.state.selectedAddress}.</b>
             </div>}
           </div>
