@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/hoge2-frontend/static/js/main.a8829dd4.chunk.js",
+    "main.js.map": "/hoge2-frontend/static/js/main.a8829dd4.chunk.js.map",
+    "runtime-main.js": "/hoge2-frontend/static/js/runtime-main.7021fecf.js",
+    "runtime-main.js.map": "/hoge2-frontend/static/js/runtime-main.7021fecf.js.map",
+    "static/css/2.5aa997f2.chunk.css": "/hoge2-frontend/static/css/2.5aa997f2.chunk.css",
+    "static/js/2.44b9efc4.chunk.js": "/hoge2-frontend/static/js/2.44b9efc4.chunk.js",
+    "static/js/2.44b9efc4.chunk.js.map": "/hoge2-frontend/static/js/2.44b9efc4.chunk.js.map",
+    "index.html": "/hoge2-frontend/index.html",
+    "precache-manifest.87587f0123ad5df3cea280b31405ad05.js": "/hoge2-frontend/precache-manifest.87587f0123ad5df3cea280b31405ad05.js",
+    "service-worker.js": "/hoge2-frontend/service-worker.js",
+    "static/css/2.5aa997f2.chunk.css.map": "/hoge2-frontend/static/css/2.5aa997f2.chunk.css.map",
+    "static/js/2.44b9efc4.chunk.js.LICENSE.txt": "/hoge2-frontend/static/js/2.44b9efc4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7021fecf.js",
+    "static/css/2.5aa997f2.chunk.css",
+    "static/js/2.44b9efc4.chunk.js",
+    "static/js/main.a8829dd4.chunk.js"
+  ]
+}
