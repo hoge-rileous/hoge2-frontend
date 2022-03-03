@@ -217,7 +217,7 @@ export class Dapp extends React.Component {
 
       amount = ethers.utils.parseUnits(amount, 9);
       const allowance = await this._hoge.allowance(this.state.selectedAddress, hoge2Address);
-      if (amount > allowance) {
+      if (amount.gt(allowance)) {
         await this._approveHoge2();
       }
 
