@@ -49,7 +49,7 @@ export class Dapp extends React.Component {
     }
 
     return (
-      <div className="p-10 h-full w-full inline-flex flex-col dark:bg-gray-900 dark:text-gray-200 items-center justify-between gap-8">
+      <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 items-center justify-between gap-8">
         <div className="text-2xl text-center">HOGE 2.0 UN/WRAPPING STATION</div>
 
         {(window.ethereum === undefined) &&
@@ -64,7 +64,7 @@ export class Dapp extends React.Component {
             <div>BALANCE: {hogeBalance} HOGE</div>
             {this.state.initialized && <Wrap wrap={(amt) => this._wrapHoge(amt)} />}
           </div>
-          <div class="flex items-center justify-center w-1/6"> <img className="inverted w-2/3" src="arrow.png" /></div>
+          <div className="flex items-center justify-center w-1/6"> <img className="inverted w-2/3" src="arrow.png" /></div>
 
           <div className="h-auto font-bold p-1 bg-cyan-200 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
             <img src="hoge2.png" alt="Hoge2" />
@@ -72,9 +72,6 @@ export class Dapp extends React.Component {
             {this.state.initialized && <Unwrap unwrap={(amt) => this._unwrapHoge2(amt)} />}
           </div>
         </div>
-
-        <hr />
-
         <div className="row">
           <div className="col-12">
             {this.state.txBeingSent && (
@@ -98,7 +95,7 @@ export class Dapp extends React.Component {
           networkError={this.state.networkError}
           dismiss={() => this._dismissNetworkError()}
         />}
-        <div class="text-gray-400 text-xs text-center">
+        <div className="text-gray-400 text-xs text-center">
           HOGE2 is a tax-free token backed 1-to-1 by HOGE. It is compatible with <a href="https://app.uniswap.org/#/swap?use=V3&inputCurrency=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&outputCurrency=0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090&chain=mainnet">Uniswap V3</a> and makes it cheaper to speculate on HOGE without touching a centralized exchange.
           Please see the code on <a className="underline" href="https://etherscan.io/address/0x25699c4b6bbf148a8fdb4b5823e8d9bba44c8090#code#F1#L1">EtherScan</a>.
           Wrapping requires an "approve" step due to line 19.</div>
