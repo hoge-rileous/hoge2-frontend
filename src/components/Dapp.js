@@ -49,7 +49,7 @@ export class Dapp extends React.Component {
     }
 
     return (
-      <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 items-center justify-between gap-8">
+      <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 bg-gray-900 items-center justify-between gap-8">
         <div className="text-2xl text-center">HOGE 2.0 UN/WRAPPING STATION</div>
 
         {(window.ethereum === undefined) &&
@@ -87,16 +87,17 @@ export class Dapp extends React.Component {
         </div>
 
         {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text">
-          Using address: <b className="w-2/3 break-words">
-            <a target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
-          </b>
+          <div className="text-sm">Using address:</div>
+          <div className="w-auto break-words">
+            <a className="underline" target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
+          </div>
         </div> : <ConnectWallet
           connectWallet={() => this._connectWallet()}
           networkError={this.state.networkError}
           dismiss={() => this._dismissNetworkError()}
         />}
         <div className="text-gray-400 text-xs text-center">
-          HOGE2 is a tax-free token backed 1-to-1 by HOGE. It is compatible with <a href="https://app.uniswap.org/#/swap?use=V3&inputCurrency=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&outputCurrency=0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090&chain=mainnet">Uniswap V3</a> and makes it cheaper to speculate on HOGE without touching a centralized exchange.
+          HOGE<sup>2</sup> is a tax-free token backed 1-to-1 by HOGE. It is compatible with <a href="https://app.uniswap.org/#/swap?use=V3&inputCurrency=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&outputCurrency=0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090&chain=mainnet">Uniswap V3</a> and makes it cheaper to speculate on HOGE without touching a centralized exchange.
           Please see the code on <a className="underline" href="https://etherscan.io/address/0x25699c4b6bbf148a8fdb4b5823e8d9bba44c8090#code#F1#L1">EtherScan</a>.
           Wrapping requires an "approve" step due to line 19.</div>
       </div>
