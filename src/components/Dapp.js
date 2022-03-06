@@ -50,7 +50,7 @@ export class Dapp extends React.Component {
 
     return (
       <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 bg-gray-900 items-center justify-between gap-8">
-        <div className="text-2xl text-center">HOGE 2.0 UN/WRAPPING STATION</div>
+        <div className="text-2xl text-center">HOGE<sup>2</sup> UN/WRAPPING STATION</div>
 
         {(window.ethereum === undefined) &&
           <div className="border bg-red-600 rounded text-center p-2 flex justify-center text-1xl flex-col items-center">
