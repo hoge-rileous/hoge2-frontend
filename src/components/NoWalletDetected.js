@@ -2,9 +2,9 @@ import React from "react";
 
 export function NoWalletDetected() {
   return (
-    <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-6 p-4 text-center">
+    <div>
+      <div>
+        <div>
           <p>
             No Ethereum wallet was detected. <br />
             Please install{" "}
