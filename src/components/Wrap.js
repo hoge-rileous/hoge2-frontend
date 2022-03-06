@@ -2,7 +2,7 @@ import React from "react";
 
 export function Wrap({ wrap }) {
   return (
-    <div style={{marginTop: "20px"}}>
+    <div className="flex flex-col">
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -11,13 +11,11 @@ export function Wrap({ wrap }) {
           wrap(amount);
         }}
       >
-        <div className="form-group" >
-          <label>Amount to wrap:</label>
-        </div>
-        <div  className="form-group">
-          <input style={{marginLeft: "20%", "width": "50%", "float": "left"}} 
-          className="form-control" type="text" name="amount" required />
-          <input className="btn btn-primary" type="submit" value="Wrap" />
+        <div className="gap-4 flex flex-col items-center justify-center" >
+          <label class="font-semibold">Amount:</label>
+          <input 
+            className="w-1/2 text-center p-1 rounded focus:outline-none border border-gray-700" type="number" step="any" name="amount" required />
+          <input className="flex items-center justify-center text-xs cursor-pointer p-2 bg-black hover:bg-gray-800 rounded text-white w-1/2" type="submit" value="Wrap" />
         </div>
       </form>
     </div>

@@ -49,25 +49,26 @@ export class Dapp extends React.Component {
     }
 
     return (
-      <div className="p-10 h-full w-full inline-flex flex-col dark:bg-gray-900 dark:text-gray-200 items-center justify-between gap-2">
-        <div>HOGE 2.0 UN/WRAPPING STATION</div>
-        <div className="text-3xl inline-flex flex-col items-center">
+      <div className="p-10 h-full w-full inline-flex flex-col dark:bg-gray-900 dark:text-gray-200 items-center justify-between gap-8">
+        <div className="text-2xl text-center">HOGE 2.0 UN/WRAPPING STATION</div>
 
-          {(window.ethereum === undefined) &&
+        {(window.ethereum === undefined) &&
+          <div className="border bg-red-600 rounded text-center p-2 flex justify-center text-1xl flex-col items-center">
             <NoWalletDetected />
-          }
-        </div>
-        <div className="flex items-center h-1/2">
-          <div className="p-6 h-full bg-orange-300 rounded-xl text-black flex flex-col items-center justify-between">
+          </div>
+        }
+
+        <div className="text-center flex items-center justify-center h-full">
+          <div className="h-auto font-bold p-1 bg-orange-300 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
             <img src="hoge.png" alt="Hoge" />
             <div>BALANCE: {hogeBalance} HOGE</div>
             {this.state.initialized && <Wrap wrap={(amt) => this._wrapHoge(amt)} />}
           </div>
-          <div class="w-32 flex items-center justify-center"> <img src="arrow.png" /></div>
+          <div class="flex items-center justify-center w-1/6"> <img className="inverted w-2/3" src="arrow.png" /></div>
 
-          <div className="p-6 h-full bg-orange-300 rounded-xl text-black flex flex-col items-center justify-between">
+          <div className="h-auto font-bold p-1 bg-cyan-200 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
             <img src="hoge2.png" alt="Hoge2" />
-            <div>BALANCE: {hoge2Balance} HOGE2</div>
+            <div>BALANCE: {hoge2Balance} HOGE<sup>2</sup></div>
             {this.state.initialized && <Unwrap unwrap={(amt) => this._unwrapHoge2(amt)} />}
           </div>
         </div>
@@ -88,8 +89,10 @@ export class Dapp extends React.Component {
           </div>
         </div>
 
-        {this.state.initialized ? <div className="flex flex-col items-center">
-          Using address: <b>{this.state.selectedAddress}.</b>
+        {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text">
+          Using address: <b className="w-2/3 break-words">
+            <a target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
+          </b>
         </div> : <ConnectWallet
           connectWallet={() => this._connectWallet()}
           networkError={this.state.networkError}
