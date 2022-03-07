@@ -50,7 +50,7 @@ export class Dapp extends React.Component {
 
     return (
       <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 bg-gray-900 items-center justify-between gap-8">
-        <div className="text-2xl text-center">HOGE<sup>2</sup> UN/WRAPPING STATION</div>
+        <div className="text-2xl text-center text-white">HOGE<sup>2</sup> UN/WRAPPING STATION</div>
 
         {(window.ethereum === undefined) &&
           <div className="border bg-red-600 rounded text-center p-2 flex justify-center text-1xl flex-col items-center">
@@ -61,14 +61,18 @@ export class Dapp extends React.Component {
         <div className="text-center flex items-center justify-center h-full">
           <div className="h-auto font-bold p-1 bg-orange-300 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
             <img src="hoge.png" alt="Hoge" />
-            <div>BALANCE: {hogeBalance} HOGE</div>
+            <div>BALANCE: </div>
+            <div class="text-xs">{parseFloat(hogeBalance).toFixed(2)}</div>
+            <div> HOGE</div>
             {this.state.initialized && <Wrap wrap={(amt) => this._wrapHoge(amt)} />}
           </div>
           <div className="flex items-center justify-center w-1/6"> <img className="inverted w-2/3" src="arrow.png" /></div>
 
           <div className="h-auto font-bold p-1 bg-cyan-200 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
             <img src="hoge2.png" alt="Hoge2" />
-            <div>BALANCE: {hoge2Balance} HOGE<sup>2</sup></div>
+            <div>BALANCE: </div>
+            <div class="text-xs">{parseFloat(hoge2Balance).toFixed(2)}</div>
+            <div>HOGE<sup>2</sup></div>
             {this.state.initialized && <Unwrap unwrap={(amt) => this._unwrapHoge2(amt)} />}
           </div>
         </div>
@@ -86,7 +90,7 @@ export class Dapp extends React.Component {
           </div>
         </div>
 
-        {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text">
+        {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text text-white">
           <div className="text-sm">Using address:</div>
           <div className="w-auto break-words">
             <a className="underline" target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
