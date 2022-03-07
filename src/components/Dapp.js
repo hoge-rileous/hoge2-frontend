@@ -92,7 +92,7 @@ export class Dapp extends React.Component {
 
         {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text text-white">
           <div className="text-sm">Using address:</div>
-          <div className="w-auto break-words">
+          <div className="text-xs w-auto break-words">
             <a className="underline" target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
           </div>
         </div> : <ConnectWallet
