@@ -10,8 +10,8 @@ import { Wrap } from "./Wrap";
 import { Unwrap } from "./Unwrap";
 import { TransactionErrorMessage } from "./TransactionErrorMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-const  hogeAddress  = "0xfad45e47083e4607302aa43c65fb3106f1cd7607";
-const  hoge2Address = "0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090"
+const hogeAddress = "0xfad45e47083e4607302aa43c65fb3106f1cd7607";
+const hoge2Address = "0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090"
 
 const ERROR_CODE_TX_REJECTED_BY_USER = 4001;
 
@@ -36,9 +36,7 @@ export class Dapp extends React.Component {
 
   render() {
 
-
-
-    const hogeBalance  = ethers.utils.formatUnits(this.state.hogeBalance, 9);
+    const hogeBalance = ethers.utils.formatUnits(this.state.hogeBalance, 9);
     const hoge2Balance = ethers.utils.formatUnits(this.state.hoge2Balance, 9);
 
     let errorMsg = null
@@ -51,43 +49,29 @@ export class Dapp extends React.Component {
     }
 
     return (
-      <div className="container p-4">
-        <div className="row">
-          <div className="col-12">
-          <div style={{textAlign: "center"}}>
-            <h1 >HOGE 2.0 UN/WRAPPING STATION</h1>
+      <div className="p-10 h-full w-full inline-flex flex-col dark:text-gray-200 bg-gray-900 items-center justify-between gap-8">
+        <div className="text-2xl text-center">HOGE<sup>2</sup> UN/WRAPPING STATION</div>
 
-            {(window.ethereum === undefined) &&
-              <NoWalletDetected />
-            }
+        {(window.ethereum === undefined) &&
+          <div className="border bg-red-600 rounded text-center p-2 flex justify-center text-1xl flex-col items-center">
+            <NoWalletDetected />
+          </div>
+        }
 
-            {this.state.initialized || <ConnectWallet 
-              connectWallet={() => this._connectWallet()} 
-              networkError={this.state.networkError}
-              dismiss={() => this._dismissNetworkError()}
-            />}
-           {this.state.initialized && <div style={{"height": "70px", "padding": "20px 0"}}>
-              Using address: <b>{this.state.selectedAddress}.</b>
-            </div>}
+        <div className="text-center flex items-center justify-center h-full">
+          <div className="h-auto font-bold p-1 bg-orange-300 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
+            <img src="hoge.png" alt="Hoge" />
+            <div>BALANCE: {hogeBalance} HOGE</div>
+            {this.state.initialized && <Wrap wrap={(amt) => this._wrapHoge(amt)} />}
           </div>
-          <div style={{marginTop: "40px", "textAlign": "center"}}>
-            <div style={{"width": "50%", "height": "350px", "float": "left", "background": "lightgreen"}}> 
-              <img src="hoge.png" alt="Hoge"/>
-              <div>BALANCE: {hogeBalance} HOGE</div>
-              {this.state.initialized && <Wrap wrap={(amt) => this._wrapHoge(amt)}/>}
-            </div>
-            <img src="arrow.png" style={{display: "block", "width":"60px", "height":"100px", "left": "50%", "top": "50%", "transform": "translate(-50%, -50%)", position: "absolute"}} />
-            <div style={{marginLeft: "50%", "height": "350px", "background": "pink"}}> 
-              <img src="hoge2.png" alt="Hoge2"/>
-              <div>BALANCE: {hoge2Balance} HOGE2</div>
-              {this.state.initialized && <Unwrap unwrap={(amt) => this._unwrapHoge2(amt)}/>}
-            </div>
-          </div>
+          <div className="flex items-center justify-center w-1/6"> <img className="inverted w-2/3" src="arrow.png" /></div>
+
+          <div className="h-auto font-bold p-1 bg-cyan-200 rounded-xl text-black flex flex-col gap-2 items-center justify-between">
+            <img src="hoge2.png" alt="Hoge2" />
+            <div>BALANCE: {hoge2Balance} HOGE<sup>2</sup></div>
+            {this.state.initialized && <Unwrap unwrap={(amt) => this._unwrapHoge2(amt)} />}
           </div>
         </div>
-
-        <hr />
-
         <div className="row">
           <div className="col-12">
             {this.state.txBeingSent && (
@@ -101,9 +85,21 @@ export class Dapp extends React.Component {
             )}
           </div>
         </div>
-        HOGE2 is a tax-free token backed 1-to-1 by HOGE. It is compatible with <a href="https://app.uniswap.org/#/swap?use=V3&inputCurrency=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&outputCurrency=0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090&chain=mainnet">Uniswap V3</a> and makes it cheaper to speculate on HOGE without touching a centralized exchange.
-        Please see the code on <a href="https://etherscan.io/address/0x25699c4b6bbf148a8fdb4b5823e8d9bba44c8090#code#F1#L1">EtherScan</a>.
-        Wrapping requires an "approve" step due to line 19.
+
+        {this.state.initialized ? <div className="text-center flex flex-col items-center gap-2 text">
+          <div className="text-sm">Using address:</div>
+          <div className="w-auto break-words">
+            <a className="underline" target="_blank" href={`https://etherscan.io/address/` + this.state.selectedAddress}>{this.state.selectedAddress}</a>
+          </div>
+        </div> : <ConnectWallet
+          connectWallet={() => this._connectWallet()}
+          networkError={this.state.networkError}
+          dismiss={() => this._dismissNetworkError()}
+        />}
+        <div className="text-gray-400 text-xs text-center">
+          HOGE<sup>2</sup> is a tax-free token backed 1-to-1 by HOGE. It is compatible with <a href="https://app.uniswap.org/#/swap?use=V3&inputCurrency=0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2&outputCurrency=0x25699C4b6bbF148A8FDb4b5823e8D9BbA44C8090&chain=mainnet">Uniswap V3</a> and makes it cheaper to speculate on HOGE without touching a centralized exchange.
+          Please see the code on <a className="underline" href="https://etherscan.io/address/0x25699c4b6bbf148a8fdb4b5823e8d9bba44c8090#code#F1#L1">EtherScan</a>.
+          Wrapping requires an "approve" step due to line 19.</div>
       </div>
     );
   }
@@ -126,10 +122,10 @@ export class Dapp extends React.Component {
       if (newAddress === undefined) {
         return this._resetState();
       }
-      
+
       this._initialize(newAddress);
     });
-    
+
     window.ethereum.on("chainChanged", ([networkId]) => {
       this._stopPollingData();
       this._resetState();
@@ -150,7 +146,7 @@ export class Dapp extends React.Component {
 
   async _initializeEthers() {
     this._provider = new ethers.providers.Web3Provider(window.ethereum);
- 
+
     this._hoge2 = new ethers.Contract(
       hoge2Address,
       Hoge2Artifact.abi,
@@ -176,13 +172,13 @@ export class Dapp extends React.Component {
   }
 
   async _updateBalance() {
-    const hogeBalance               = await this._hoge.balanceOf(this.state.selectedAddress);
-    const hoge2Balance              = await this._hoge2.balanceOf(this.state.selectedAddress);
+    const hogeBalance = await this._hoge.balanceOf(this.state.selectedAddress);
+    const hoge2Balance = await this._hoge2.balanceOf(this.state.selectedAddress);
 
     this.setState({
-     hogeBalance,
-     hoge2Balance,
-   });
+      hogeBalance,
+      hoge2Balance,
+    });
   }
 
   async _approveHoge2() {
@@ -196,7 +192,7 @@ export class Dapp extends React.Component {
       const receipt = await tx.wait();
       if (receipt.status === 0) {
         throw new Error("Transaction failed");
-      } 
+      }
       await this._updateBalance();
     } catch (error) {
       if (error.code === ERROR_CODE_TX_REJECTED_BY_USER) {
@@ -300,7 +296,7 @@ export class Dapp extends React.Component {
       return true;
     }
 
-    this.setState({ 
+    this.setState({
       networkError: 'Please connect Metamask to ETH MAINNET'
     });
 
