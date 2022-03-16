@@ -77,7 +77,7 @@ export class Dapp extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 flex items-center justify-center">
             {this.state.txBeingSent && (
               <WaitingForTransactionMessage txHash={this.state.txBeingSent} />
             )}
